@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Exclure les routes /login et /logout de l'authentification
+    RewriteCond %{REQUEST_URI} ^/login [OR]
+    RewriteCond %{REQUEST_URI} ^/logout
+    RewriteRule ^ - [L]
+    # Appliquer l'authentification BearerToken JWT pour toutes les autres routes
+    RewriteCond %{HTTP:Authorization} ^Bearer(.*)$ [NC]
+    RewriteRule .* - [E=JWT_TOKEN:%1]
+    # Handle GET requests
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=list [L,QSA]
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=get&id=$3 [L,QSA]
+    # Handle POST requests
+    RewriteCond %{REQUEST_METHOD} POST
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=create [L,QSA]
+    # Handle PUT requests
+    RewriteCond %{REQUEST_METHOD} PUT
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=update&id=$3 [L,QSA]
+    # Handle DELETE requests
+    RewriteCond %{REQUEST_METHOD} DELETE
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=delete_all [L,QSA]
+    RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([0-9]+)?$ _wZ526jbTU5Zar6c93ER4_.php?token=$1&collection=$2&action=delete&id=$3 [L,QSA]
+</IfModule>
+
+<IfModule mod_headers.c>
+    ## Protection contre les attaques de type clickjacking
+    Header always append X-Frame-Options DENY 
+    ## Protection contre les attaques XSS
+    Header set X-XSS-Protection "1; mode=block"
+    ## Protection contre les attaques de type MIME sniffing
+    Header set X-Content-Type-Options nosniff
+</IfModule>
+
+# Sécuriser le fichier .htaccess
+<Files .htaccess>
+    Require all denied
+</Files>
+
+# Sécuriser le fichier .env
+<Files .env>
+    Require all denied
+</Files>

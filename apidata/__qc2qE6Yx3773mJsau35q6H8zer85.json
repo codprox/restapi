@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "index": 1,
+            "_id": "QBRPxRngKkSrYdjc9JQDxdu2",
+            "login": "armandmouele@gmail.com",
+            "password": "$2y$10$2SNXkDi.LMF2h9qbuegst.F9xqJCcDOAx5xfxO1YTJqDaBPG9X15G",
+            "name": "Armand MOUELE",
+            "telephone": "074511594",
+            "access_token": "f7fa51ca-0f56-4c6a-b988-5d709b9d2c23",
+            "isActive": true,
+            "expire_account": "2024-12-18 13:27:46", 
+            "created_at": "2024-09-19 13:27:46"
+        },
+        {
+            "index": 2,
+            "_id": "Zj7pgA6tZZyRSHWveFGWdz5Z",
+            "login": "bibangjoseph@biteck-gabon.com",
+            "password": "$2y$10$bew7KiVgtGzHOvr5UtD91..6vsXtsvCmwg5O7bUeW9PECD1dCaC7K",
+            "name": "Joseph BIBANG",
+            "telephone": "077010203",
+            "access_token": "8a1afb0d-0530-4f38-9441-47e1c093fcfd",
+            "isActive": true,
+            "expire_account": "2024-12-18 17:04:12", 
+            "created_at": "2024-09-19 17:04:12"
+        }
+    ]
+}

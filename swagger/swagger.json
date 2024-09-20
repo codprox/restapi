@@ -130,11 +130,82 @@
                 }
             }
         },
+        "/{yourAccessToken}/profile/{id}":{
+            "put":{
+                "tags":["Profile"],
+                "description": "Mettre à jour les informations de son profile",
+                "operationId": "putProfile",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    }, 
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"id est de l'item à lire",
+                        "required": true,
+                        "type":"integer"
+                    },
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                        "required": true,
+                        "schema":{
+                            "$ref":"#/definitions/CreateProfile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/delProfile/{id}":{
+            "delete":{
+                "tags":["Collections"],
+                "description": "Supprimer son propre profile",
+                "operationId": "delProfile",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    }, 
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"id est du profile à supprimer",
+                        "required": true,
+                        "type":"integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/{yourAccessToken}/{getAllCollection}":{
             "get":{
                 "tags":["Collections"],
                 "description": "Récupère toutes les données de cette collection",
-                "operationId": "getAll",
+                "operationId": "getAllCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -146,7 +217,7 @@
                     {
                         "name":"getAllCollection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à lire",
                         "required": true,
                         "type":"string"
                     }
@@ -165,7 +236,7 @@
             "get":{
                 "tags":["Collections"],
                 "description": "Récupère les données d'un item",
-                "operationId": "get",
+                "operationId": "getCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -177,7 +248,7 @@
                     {
                         "name":"getCollection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à lire",
                         "required": true,
                         "type":"string"
                     },
@@ -203,7 +274,7 @@
             "post":{
                 "tags":["Collections"],
                 "description": "Récupère toutes les données de cette collection",
-                "operationId": "createCollection",
+                "operationId": "postCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -215,7 +286,7 @@
                     {
                         "name":"postCollection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à utiliser",
                         "required": true,
                         "type":"string"
                     }, 
@@ -243,7 +314,7 @@
             "put":{
                 "tags":["Collections"],
                 "description": "Mettre à jour cet item",
-                "operationId": "get",
+                "operationId": "putCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -255,14 +326,14 @@
                     {
                         "name":"putCollection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à modifier",
                         "required": true,
                         "type":"string"
                     },
                     {
                         "name":"id",
                         "in":"path",
-                        "description":"id est de l'item à lire",
+                        "description":"id est de l'item à modifier",
                         "required": true,
                         "type":"integer"
                     },
@@ -286,11 +357,11 @@
                 }
             }
         },
-        "/{yourAccessToken}/{collection}":{
+        "/{yourAccessToken}/{delAllCollection}":{
             "delete":{
                 "tags":["Collections"],
                 "description": "Supprimer toutes les données de cette collection",
-                "operationId": "get",
+                "operationId": "delAllCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -302,7 +373,7 @@
                     {
                         "name":"collection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à supprimer",
                         "required": true,
                         "type":"string"
                     }
@@ -317,11 +388,11 @@
                 }
             }
         },
-        "/{yourAccessToken}/{collection}/{id}":{
+        "/{yourAccessToken}/{delCollection}/{id}":{
             "delete":{
                 "tags":["Collections"],
                 "description": "Supprimer un item",
-                "operationId": "get",
+                "operationId": "delCollection",
                 "parameters":[
                     {
                         "name":"yourAccessToken",
@@ -333,14 +404,14 @@
                     {
                         "name":"collection",
                         "in":"path",
-                        "description":"collection est la collection à lire",
+                        "description":"collection à utiliser",
                         "required": true,
                         "type":"string"
                     },
                     {
                         "name":"id",
                         "in":"path",
-                        "description":"id est de l'item à lire",
+                        "description":"id est de l'item à supprimer",
                         "required": true,
                         "type":"integer"
                     }

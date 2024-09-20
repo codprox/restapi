@@ -81,7 +81,8 @@ http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
 ```
 
 Pour mettre à jour une catégorie (et même ajouter librement d'autres colonnes comme du NoSQL), envoyez une requête PUT à `/categories/ID` avec le corps suivant :
-http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5
+```http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5
+```
 ```json
 {
     "title": "Titre de la catégorie",

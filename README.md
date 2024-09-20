@@ -1,6 +1,6 @@
 # RESTAPI
 
-**restapi** est une solution PHP conçue pour tout développeur souhaitant une API totalement gratuite, permettant d'effectuer des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) gratuitement pendant 3 mois.
+**RESTAPI** est une solution PHP conçue pour tout développeur souhaitant une API totalement gratuite, permettant d'effectuer des opérations CRUD (Créer, Lire, Mettre à jour, Supprimer) gratuitement pendant 3 mois. Vous pourriez utiliser cette API à vos applications mobile, web et même desktop et gérer ainsi plus facilement toutes vos données en un seul lieu, et ce, totalement gratuitement.
 
 ## Fonctionnalités
 
@@ -106,4 +106,4 @@ Support
 Pour toute question ou assistance, veuillez ouvrir une issue sur le dépôt GitHub ou contactez le développeur à armandmoueleprofessionnel@gmail.com
 
 Licence
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+Ce projet est sous licence MIT. Veuillez rappeler à toute fin utile les références du développeur lors de votre utilisation de ce code.

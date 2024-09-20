@@ -20,7 +20,23 @@ class UsersResource {
         // }  
         return $arr;
     }
-
+    
+    /**
+     * @OA\Post(
+     *     path="/rqXJ28773mJsau3D8EzzjCT3m4GrKi42YLD33Ab4/profile",
+     *     summary="Crée un nouveau profil utilisateur",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="nom", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="password", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(response="201", description="Profil créé avec succès")
+     * )
+     */
     public function createAccount(){
         global $_func;
         global $_mydates;

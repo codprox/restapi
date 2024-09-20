@@ -52,6 +52,11 @@ Avec les paramètres minimum suivants :
 À la suite de cette opération de création de profil (ou de compte), vous recevrez votre access_token qui vous permettra de faire toutes vos requêtes
 
 ### Étape 2 : Requêtes C.R.U.D.
+- **POST /SERVEUR_KEY/profile** : Crée un nouveau profil utilisateur et recevoir son access_token.
+- **POST /SERVEUR_KEY/login** : Se connecter à son compte utilisateur
+- **GET /VOTRE_ACCESS_TOKEN/profile** : Récupère les informations de votre profil.
+- **PUT /VOTRE_ACCESS_TOKEN/profile/{id}** : Met à jour un profil.
+- **DELETE /VOTRE_ACCESS_TOKEN/profile/{id}** : Supprime un profile et toutes ses données.
 
 - **GET /VOTRE_ACCESS_TOKEN/collection** : Récupère toutes les données de la collection.
 - **GET /VOTRE_ACCESS_TOKEN/collection/{id}** : Récupère un item de la collection par son ID.

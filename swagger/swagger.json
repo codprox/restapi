@@ -1,0 +1,440 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Ce service RESTAPI permet à tout développeur d'interagir (CRUD) avec une API réelle et totalement gratuit sur une période de 3 mois.",
+        "version": "1.0",
+        "title": "RESTAPI",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "armandmoueleprofessioninel@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "servers":[
+        {
+            "url":"https://api.bitech-gabon.com/"
+        },
+        {
+            "url":"http://restapi.biz/"
+        }
+    ],
+    "tags":[
+        {
+            "name": "Profile",
+            "description": "Gérer votre profile sur le serveur"
+        },
+        {
+            "name": "Collections",
+            "description": "Gérer toutes vos collections sans restriction d'actions" 
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths":{
+        "/rqXJ28773mJsau3D8EzzjCT3m4GrKi42YLD33Ab4/profile":{
+            "post":{
+                "tags":["Profile"],
+                "description": "Crée un nouveau profil utilisateur et recevoir son access_token",
+                "operationId": "createProfile",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                        "required": true,
+                        "schema":{
+                            "$ref":"#/definitions/CreateProfile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile créé avec succès !",
+                        "content":{
+                            "application/json":{
+
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/components/schemas/Profile"
+                        }
+                    }
+                }
+            }
+        },
+        "/rqXJ28773mJsau3D8EzzjCT3m4GrKi42YLD33Ab4/login":{
+            "post":{
+                "tags":["Profile"],
+                "description": "Se connecter à son compte utilisateur",
+                "operationId": "loginProfile",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "required": true,
+                        "schema":{
+                            "$ref":"#/definitions/LoginProfile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile trouvé !",
+                        "content":{
+                            "application/json":{
+
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/components/schemas/Profile"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Profile not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/profile":{
+            "get":{
+                "tags":["Profile"],
+                "description": "Récupère les informations de votre profil",
+                "operationId": "getProfile",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{getAllCollection}":{
+            "get":{
+                "tags":["Collections"],
+                "description": "Récupère toutes les données de cette collection",
+                "operationId": "getAll",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"getAllCollection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{getCollection}/{id}":{
+            "get":{
+                "tags":["Collections"],
+                "description": "Récupère les données d'un item",
+                "operationId": "get",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"getCollection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"id est de l'item à lire",
+                        "required": true,
+                        "type":"integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{postCollection}":{
+            "post":{
+                "tags":["Collections"],
+                "description": "Récupère toutes les données de cette collection",
+                "operationId": "createCollection",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"postCollection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    }, 
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                        "required": true,
+                        "schema":{
+                            "$ref":"#/definitions/CreateCollection"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{putCollection}/{id}":{
+            "put":{
+                "tags":["Collections"],
+                "description": "Mettre à jour cet item",
+                "operationId": "get",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"putCollection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"id est de l'item à lire",
+                        "required": true,
+                        "type":"integer"
+                    },
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                        "required": true,
+                        "schema":{
+                            "$ref":"#/definitions/CreateCollection"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{collection}":{
+            "delete":{
+                "tags":["Collections"],
+                "description": "Supprimer toutes les données de cette collection",
+                "operationId": "get",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"collection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/{yourAccessToken}/{collection}/{id}":{
+            "delete":{
+                "tags":["Collections"],
+                "description": "Supprimer un item",
+                "operationId": "get",
+                "parameters":[
+                    {
+                        "name":"yourAccessToken",
+                        "in":"path",
+                        "description":"yourAccessToken est votre access_token",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"collection",
+                        "in":"path",
+                        "description":"collection est la collection à lire",
+                        "required": true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"id est de l'item à lire",
+                        "required": true,
+                        "type":"integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Données de votre profile", 
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "ApiResponse":{
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "data": {
+                    "type": "array"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "CreateProfile":{
+            "type":"object",
+            "required":["name","email","password"],
+            "properties":{
+                "name":{
+                    "type":"string",
+                    "example":"Armand MOUELE"
+                },
+                "email":{
+                    "type":"string",
+                    "example":"armandmouele@gmail.com"
+                }, 
+                "password":{
+                    "type":"string",
+                    "example":"123456789"
+                },
+                "telephone":{
+                    "type":"string",
+                    "example":"00241 074.51.15.94"
+                }
+            }
+        },
+        "LoginProfile":{
+            "type":"object",
+            "required":["login","password"],
+            "properties":{ 
+                "login":{
+                    "type":"string",
+                    "example":"armandmouele@gmail.com",
+                    "description":"Le login peut être soit votre email ou votre numéro de téléphone."
+                },
+                "password":{
+                    "type":"string",
+                    "example":"123456789"
+                }
+            }
+        },
+        "CreateCollection":{
+            "type":"object",
+            "required":["title"],
+            "properties":{
+                "title":{
+                    "type":"string",
+                    "example":"Titre de la collection"
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Profile":{
+                "type":"object",
+                "properties":{
+                    "index":{"type":"integer"},
+                    "_id":{"type":"string"},
+                    "login":{"type":"string"},
+                    "name":{"type":"string"},
+                    "telephone":{"type":"string"},
+                    "access_token":{"type":"string"},
+                    "isActive":{"type":"boolean"},
+                    "expire_account":{"type":"string","format":"date-time"},
+                    "created_at":{"type":"string","format":"date-time"}
+                }
+            }
+        }
+    }
+}

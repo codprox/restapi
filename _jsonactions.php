@@ -5,6 +5,7 @@
     global $_func;
     global $_myfile;
     global $_mydates;
+    global $_httpRes;
 
     $_baseFile = $collection.'.json';
     if($_token == $_serverToken){
@@ -100,6 +101,7 @@
                     } 
 
                     $_find = _create($_file,$data);
+                    // if(isset($_find['password'])){unset($_find['password']);}
 
                     $response = array('success'=>true,'data'=>$_find);
                     $res   = $_httpRes->__response($response);

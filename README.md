@@ -71,6 +71,12 @@ Pour récupérer la liste de toutes les catégories (ou une seule catégorie), e
     http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5?page=1&limit=10
 ```
 
+Il est également possible de faire des jointures entre table. Exemple : pour la table produits(id,title,categories_id,clients_id), voici une jointure :
+``` 
+    http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/produits
+    http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/produits/5?page=1&limit=10&join=categories,clients
+```
+
 Pour créer une nouvelle catégorie, envoyez une requête POST à `/categories` avec le corps suivant :
 http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
 ```json

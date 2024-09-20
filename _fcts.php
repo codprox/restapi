@@ -18,10 +18,10 @@
 	$_myall      = new _MyAllFunctions();
 	$_func       = new MesFonctionsUsuelles();  
 	 
-	$_m = $_myfile->analyse();
-	if($_m !== false){
-		$_mymail->sendMail($_m);
-	}
+	// $_m = $_myfile->analyse();
+	// if($_m !== false){
+	// 	$_mymail->sendMail($_m);
+	// }
 	
 	require_once '_fileactions.php'; 
 	

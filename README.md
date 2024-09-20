@@ -22,10 +22,7 @@
     git clone https://github.com/codprox/restapi.git
     ```
 
-2. Déplacez le répertoire du projet sur votre serveur :
-    ```bash
-    cd restapi
-    ```
+2. Déplacez le contenu du projet sur votre serveur ou même un sous-domaine de votre hébergement : 
 
 3. Pas de dépendances nécessaires : 
 

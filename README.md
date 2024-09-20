@@ -66,7 +66,8 @@ Avec les paramètres minimum suivants :
 ### Exemples de requête
 
 Pour récupérer la liste de toutes les catégories (ou une seule catégorie), envoyez une requête GET à :
-``` http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
+``` 
+    http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
     http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5?page=1&limit=10
 ```
 
@@ -91,7 +92,8 @@ http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5
 ```
 
 Pour supprimer toutes les catégories (ou une seule catégorie), envoyez une requête DELETE à :
-``` http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
+``` 
+    http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories
     http://restapi.biz/8a1afb0d-0530-4f38-9441-47e1c093fcfd/categories/5
 ```
 

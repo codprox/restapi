@@ -34,6 +34,9 @@
         
         $key   = $v.'_id'; // "categories_id" - "souscategories_id" 
         $k     = $value->$key;
+        if($k==0){
+            return null;
+        }
         $_file = $_baseFolderFichier.$v.'.json'; 
         if(_exist($_file)){
             $dt= _get($_file,$k,$_indexKey);
@@ -150,7 +153,10 @@
                 $cjoin = explode(',',$join);
                 foreach ($_find as $key => $value) {
                     foreach ($cjoin as $k => $v) {
-                        $value->$v = joinTable($value,$v); 
+                        $jon = joinTable($value,$v);
+                        if($jon !=null){
+                            $value->$v = $jon; 
+                        }
                     }
                 }
             }
@@ -165,7 +171,7 @@
             
 		return $_find;
 	}
-	function _get($file,$id,$_key=null){
+	function _get($file,$id,$_key=null,$join=null){
         global $_indexKey;
 		$_jsondb = new JsonCRUD($file);
         $_find = (object)[];
@@ -188,6 +194,17 @@
                 }
             }
         } 
+
+        // sous-table
+        if($join!=null){
+            $cjoin = explode(',',$join);
+            foreach ($cjoin as $k => $v) {
+                $jon = joinTable($_find,$v);
+                if($jon !=null){
+                    $_find->$v = $jon; 
+                }
+            } 
+        }
 		return $_find;
 	}
 	function _save($file,$data){
@@ -239,10 +256,7 @@
 		global $_indexKey;
         global $_titleToken;  
         global $_baseFolder;  
-		$_jsondb = new JsonCRUD($file);
-        // $identify= $data['login'];
-        // print_r($identify);
-        // return false;
+		$_jsondb = new JsonCRUD($file); 
         $identifiant = ($_mymail->isMail($data['login'])) ? 'email' : 'telephone';
         $where = array($identifiant =>$data['login']);
         $_find = $_jsondb->find($where); 

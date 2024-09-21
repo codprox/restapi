@@ -46,7 +46,11 @@
                     }
                     else{
                         if($id !=null){ 
-                            $_find = _get($_file,$id);
+                            $join = null;
+                            if(count($_params)>0){
+                                $join = $_params['join'] ?? null; 
+                            }
+                            $_find = _get($_file,$id,null,$join);
                             $response = array('success'=>true,'data'=>$_find);
                             $res = $_httpRes->__response($response);
                         }else{

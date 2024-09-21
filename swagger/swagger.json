@@ -1,5 +1,5 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.0",
     "info": {
         "description": "Ce service RESTAPI permet à tout développeur d'interagir (CRUD) avec une API réelle et totalement gratuit sur une période de 3 mois.",
         "version": "1.0",
@@ -13,14 +13,6 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "servers":[
-        {
-            "url":"https://api.bitech-gabon.com/"
-        },
-        {
-            "url":"http://restapi.biz/"
-        }
-    ],
     "tags":[
         {
             "name": "Profile",
@@ -31,10 +23,14 @@
             "description": "Gérer toutes vos collections sans restriction d'actions" 
         }
     ],
-    "schemes": [
-        "http",
-        "https"
-    ],
+    "servers":[
+        {
+            "url":"https://api.bitech-gabon.com/"
+        },
+        {
+            "url":"http://restapi.biz/"
+        }
+    ], 
     "paths":{
         "/rqXJ28773mJsau3D8EzzjCT3m4GrKi42YLD33Ab4/profile":{
             "post":{
@@ -48,7 +44,7 @@
                         "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
                         "required": true,
                         "schema":{
-                            "$ref":"#/definitions/CreateProfile"
+                            "$ref":"#/components/schemas/CreateProfile"
                         }
                     }
                 ],
@@ -72,36 +68,39 @@
                 "tags":["Profile"],
                 "description": "Se connecter à son compte utilisateur",
                 "operationId": "loginProfile",
-                "parameters":[
-                    {
-                        "in":"body",
-                        "name":"body",
-                        "required": true,
-                        "schema":{
-                            "$ref":"#/definitions/LoginProfile"
+                "requestBody":{
+                    "description":"Contenu complet",
+                    "required": true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{ 
+                                    "login":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                },
+                                "required":[
+                                    "login",
+                                    "password"
+                                ]
+                            }
                         }
                     }
-                ],
+                }, 
                 "responses": {
                     "200": {
                         "description": "Profile trouvé !",
                         "content":{
                             "application/json":{
-
+                                "schema": {
+                                    "$ref": "#/components/schemas/Profile"
+                                }
                             }
-                        },
-                        "schema": {
-                            "$ref": "#/components/schemas/Profile"
                         }
-                    },
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    },
-                    "404": {
-                        "description": "Profile not found"
-                    },
-                    "405": {
-                        "description": "Validation exception"
                     }
                 }
             }
@@ -124,7 +123,7 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -149,22 +148,23 @@
                         "description":"id est de l'item à lire",
                         "required": true,
                         "type":"integer"
-                    },
-                    {
-                        "in":"body",
-                        "name":"body",
-                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
-                        "required": true,
-                        "schema":{
-                            "$ref":"#/definitions/CreateProfile"
-                        }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/CreateProfile"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -172,7 +172,7 @@
         },
         "/{yourAccessToken}/delProfile/{id}":{
             "delete":{
-                "tags":["Collections"],
+                "tags":["Profile"],
                 "description": "Supprimer son propre profile",
                 "operationId": "delProfile",
                 "parameters":[
@@ -195,7 +195,7 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -226,7 +226,7 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -264,7 +264,7 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -289,22 +289,24 @@
                         "description":"collection à utiliser",
                         "required": true,
                         "type":"string"
-                    }, 
-                    {
-                        "in":"body",
-                        "name":"body",
-                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
-                        "required": true,
-                        "schema":{
-                            "$ref":"#/definitions/CreateCollection"
-                        }
                     }
                 ],
+                "requestBody": {
+                    "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                    "required": true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/CreateCollection"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -336,22 +338,24 @@
                         "description":"id est de l'item à modifier",
                         "required": true,
                         "type":"integer"
-                    },
-                    {
-                        "in":"body",
-                        "name":"body",
-                        "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
-                        "required": true,
-                        "schema":{
-                            "$ref":"#/definitions/CreateCollection"
-                        }
                     }
                 ],
+                "requestBody": {
+                    "description":"Voici les colonnes basiques; mais vous pouvez ajouter plus.",
+                    "required": true,
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/CreateCollection"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -371,7 +375,7 @@
                         "type":"string"
                     },
                     {
-                        "name":"collection",
+                        "name":"delAllCollection",
                         "in":"path",
                         "description":"collection à supprimer",
                         "required": true,
@@ -382,7 +386,7 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
@@ -402,7 +406,7 @@
                         "type":"string"
                     },
                     {
-                        "name":"collection",
+                        "name":"delCollection",
                         "in":"path",
                         "description":"collection à utiliser",
                         "required": true,
@@ -420,76 +424,13 @@
                     "200": {
                         "description": "Données de votre profile", 
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/components/schemas/ApiResponse"
                         }
                     }
                 }
             }
         }
-    },
-    "definitions":{
-        "ApiResponse":{
-            "type": "object",
-            "properties": {
-                "success": {
-                    "type": "boolean"
-                },
-                "data": {
-                    "type": "array"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "CreateProfile":{
-            "type":"object",
-            "required":["name","email","password"],
-            "properties":{
-                "name":{
-                    "type":"string",
-                    "example":"Armand MOUELE"
-                },
-                "email":{
-                    "type":"string",
-                    "example":"armandmouele@gmail.com"
-                }, 
-                "password":{
-                    "type":"string",
-                    "example":"123456789"
-                },
-                "telephone":{
-                    "type":"string",
-                    "example":"00241 074.51.15.94"
-                }
-            }
-        },
-        "LoginProfile":{
-            "type":"object",
-            "required":["login","password"],
-            "properties":{ 
-                "login":{
-                    "type":"string",
-                    "example":"armandmouele@gmail.com",
-                    "description":"Le login peut être soit votre email ou votre numéro de téléphone."
-                },
-                "password":{
-                    "type":"string",
-                    "example":"123456789"
-                }
-            }
-        },
-        "CreateCollection":{
-            "type":"object",
-            "required":["title"],
-            "properties":{
-                "title":{
-                    "type":"string",
-                    "example":"Titre de la collection"
-                }
-            }
-        }
-    },
+    }, 
     "components":{
         "schemas":{
             "Profile":{
@@ -504,6 +445,47 @@
                     "isActive":{"type":"boolean"},
                     "expire_account":{"type":"string","format":"date-time"},
                     "created_at":{"type":"string","format":"date-time"}
+                }
+            },
+            "ApiResponse":{
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "data": {
+                        "type": "array"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateProfile":{
+                "type":"object",
+                "required":["name","email","password"],
+                "properties":{
+                    "name":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string"
+                    }, 
+                    "password":{
+                        "type":"string"
+                    },
+                    "telephone":{
+                        "type":"string"
+                    }
+                }
+            }, 
+            "CreateCollection":{
+                "type":"object",
+                "required":["title"],
+                "properties":{
+                    "title":{
+                        "type":"string"
+                    }
                 }
             }
         }

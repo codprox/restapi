@@ -115,6 +115,8 @@
             break; 
         case 'PUT':
             try { 
+                if($collection=='profile'){ $_file= $_baseFolder.$_accountsFiles; } 
+
                 if(!_exist($_file)){
                     $response = array('success'=>false,'data'=>[],'message'=>"Collection inexistante..");
                 } 
@@ -126,11 +128,11 @@
                         if($collection=='profile'){
                             $_file= $_baseFolder.$_accountsFiles;    
                             $_inst= new UsersResource($data);
-                            $data = $_inst->createAccount(); 
+                            $data = $_inst->updateAccount(); 
                         }  
 
                         $_find = _update($_file,$_indexKey,$id,$data);
-                        $response = array('success'=>true,'data'=>$_find);
+                        $response = array('success'=>true,'data'=>[],'message'=>'Mise à jour effectuée avec succès!');
                     }
                     else{
                         $response = array('success'=>false,'data'=>[],'message'=>$_httpRes->__get(400).' : ID vide !');
@@ -149,7 +151,7 @@
                 try {   
                     $items = _getAll($_file); 
                     $_find = _deleteAll($_file);
-                    $response = array('success'=>true,'data'=>$_find);
+                    $response = array('success'=>true,'data'=>[],'message'=>'Liste supprimée avec succès!');
                     $res = $_httpRes->__response($response);
                     echo $_myall->__toJson($res);  
                 } catch (Exception $e) {
@@ -173,7 +175,7 @@
                         } 
                         $_find = _delete($_file,$_indexKey,$id);
 
-                        $response = array('success'=>true,'data'=>$_find);
+                        $response = array('success'=>true,'data'=>[],'message'=>'Supprimer avec succès!');
                         $res = $_httpRes->__response($response);
                     }else{
                         $response = array('success'=>false,'data'=>[],'message'=>$_httpRes->__get(400).' : ID vide !');

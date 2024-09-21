@@ -1,16 +1,18 @@
 {
-    "data": [ 
+    "data": [
         {
             "index": 1,
             "_id": "6sTZRs9MRJRtsSvUryQRUYk8",
             "name": "Armand MOUELE",
             "email": "armandmouele@protonmail.com",
             "password": "$2y$10$ERLpbLKwlG0tDDy4MNp0Ue8GeBVkYkLJ\/rVhvlacTEHXrLQ\/b..wS",
-            "telephone": "00241 074.51.15.94",
+            "telephone": "074511594",
             "access_token": "7c0ee470-2ba0-4131-9821-686a1ea73ab1",
             "isActive": true,
-            "expire_account": "2024-12-19 20:17:21",
-            "created_at": "2024-09-20 20:17:21"
+            "expire_account": "2024-12-20 01:30:19",
+            "created_at": "2024-09-20 20:17:21",
+            "marier": true,
+            "updated_at": "2024-09-21 01:30:19"
         }
     ]
 }

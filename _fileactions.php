@@ -240,7 +240,9 @@
         global $_titleToken;  
         global $_baseFolder;  
 		$_jsondb = new JsonCRUD($file);
-        
+        // $identify= $data['login'];
+        // print_r($identify);
+        // return false;
         $identifiant = ($_mymail->isMail($data['login'])) ? 'email' : 'telephone';
         $where = array($identifiant =>$data['login']);
         $_find = $_jsondb->find($where); 

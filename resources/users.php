@@ -21,22 +21,6 @@ class UsersResource {
         return $arr;
     }
     
-    /**
-     * @OA\Post(
-     *     path="/rqXJ28773mJsau3D8EzzjCT3m4GrKi42YLD33Ab4/profile",
-     *     summary="Crée un nouveau profil utilisateur",
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="nom", type="string"),
-     *             @OA\Property(property="email", type="string"),
-     *             @OA\Property(property="password", type="string")
-     *         )
-     *     ),
-     *     @OA\Response(response="201", description="Profil créé avec succès")
-     * )
-     */
     public function createAccount(){
         global $_func;
         global $_mydates;
@@ -57,6 +41,17 @@ class UsersResource {
 		if(!isset($this->item['expire_account'])){
 			$this->item['expire_account'] = $_mydates->addDate($_expireAccount,'day','Y-m-d H:i:s');
 		} 
+        
+        return $this->item;
+    }
+    
+    public function updateAccount(){
+        global $_func; 
+        global $_iscryptPSW;  
+         
+        if(($_iscryptPSW) && isset($this->item['password'])){ 
+            $this->item['password'] = $_func->bcrypt($this->item['password']); 
+        } 
         
         return $this->item;
     }
